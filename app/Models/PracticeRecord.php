@@ -34,11 +34,25 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|PracticeRecord whereTempoMultiplier($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PracticeRecord whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PracticeRecord whereUserId($value)
- * @mixin \Eloquent
+ * @mixin Model
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ * @mixin \Illuminate\Database\Query\Builder
  */
 class PracticeRecord extends Model
 {
     use HasFactory;
+
+    const COLUMN_ID = "id";
+    const COLUMN_SEGMENT_ID = "segment_id";
+    const COLUMN_USER_ID = "user_id";
+    const COLUMN_SESSION_UUID = "session_uuid";
+    const COLUMN_TEMPO_MULTIPLIER = "tempo_multiplier";
+    const COLUMN_QTY_AVAILABLE_NOTES = "qty_available_notes";
+    const COLUMN_QTY_CORRECTLY_PLAYED_NOTES = "qty_correctly_played_notes";
+    const COLUMN_QTY_INCORRECTLY_PLAYED_NOTES = "qty_incorrectly_played_notes";
+    const COLUMN_CREATED_AT = "created_at";
+    const COLUMN_UPDATED_AT = "updated_at";
+
 
     /**
      * Get the user who created this practice record

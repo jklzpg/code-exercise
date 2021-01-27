@@ -28,11 +28,20 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Segment whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Segment whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Segment whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Model
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ * @mixin \Illuminate\Database\Query\Builder
  */
 class Segment extends Model
 {
     use HasFactory;
+
+    const COLUMN_ID = "id";
+    const COLUMN_LESSON_ID = "lesson_id";
+    const COLUMN_NAME = "name";
+    const COLUMN_ORDER = "order";
+    const COLUMN_CREATED_AT = "created_at";
+    const COLUMN_UPDATED_AT = "updated_at";
 
     /**
      * Get the lesson to which this segment belongs

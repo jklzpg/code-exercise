@@ -28,11 +28,21 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Lesson whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lesson whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lesson whereIsPublished($value)
- * @mixin \Eloquent
+ * @mixin Model
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ * @mixin \Illuminate\Database\Query\Builder
  */
 class Lesson extends Model
 {
     use HasFactory;
+
+    const COLUMN_ID = "id";
+    const COLUMN_NAME = "name";
+    const COLUMN_DESCRIPTION = "description";
+    const COLUMN_DIFFICULTY = "difficulty";
+    const COLUMN_CREATED_AT = "created_at";
+    const COLUMN_UPDATED_AT = "updated_at";
+    const COLUMN_IS_PUBLISHED = "is_published";
 
     /**
      * Get the segments for the lesson

@@ -4,21 +4,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lesson;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Http\JsonResponse;
+use App\Http\ViewServices\UserProgressViewService;
+use App\Resources\LessonProgressCollection;
 
 class StudentProgressController extends Controller
 {
-    public function get(int $userId): JsonResponse
+    public function get(int $userId): LessonProgressCollection
     {
-        return response()->json(
-            Lesson::with(['segments','segments.practiceRecords' => function(HasMany $query) use ($userId) {
-                $query->where('user_id', $userId);
-            }])
-                ->where('is_published',true)
-                ->get()
-                ->toArray()
-        );
+        return UserProgressViewService::getUserProgress($userId);
     }
 }

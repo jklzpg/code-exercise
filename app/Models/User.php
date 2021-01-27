@@ -28,11 +28,19 @@ use Laravel\Lumen\Auth\Authorizable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Model
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ * @mixin \Illuminate\Database\Query\Builder
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable, HasFactory;
+
+    const COLUMN_ID = "id";
+    const COLUMN_NAME = "name";
+    const COLUMN_EMAIL = "email";
+    const COLUMN_CREATED_AT = "created_at";
+    const COLUMN_UPDATED_AT = "updated_at";
 
     /**
      * Get the practice records associated with this user
