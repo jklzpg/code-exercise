@@ -4,11 +4,11 @@
 namespace App\Repositories;
 
 
-use App\Factories\ModelDetailsFactory;
 use App\Models\Lesson;
 use App\Models\PracticeRecord;
 use App\Models\Segment;
 use App\Models\User;
+use App\Services\ModelTableInfoService;
 
 class LessonsProgressRepository
 {
@@ -25,12 +25,10 @@ class LessonsProgressRepository
     public static function getLessonProgressForUserId(int $userId): \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|array
     {
 
-        $lessonTable = ModelDetailsFactory::getTable(Lesson::class);
-        $segmentTable = ModelDetailsFactory::getTable(Segment::class);
+        $lessonTable = ModelTableInfoService::getTableName(Lesson::class);
+        $segmentTable = ModelTableInfoService::getTableName(Segment::class);
 
-        $scorePercentRawQuery = "MAX(FLOOR(" .
-            PracticeRecord::COLUMN_QTY_CORRECTLY_PLAYED_NOTES .
-            "/(" . PracticeRecord::COLUMN_QTY_AVAILABLE_NOTES . " + " . PracticeRecord::COLUMN_QTY_INCORRECTLY_PLAYED_NOTES . ") * 100)) as max_score_percent";
+        $scorePercentRawQuery = "MAX(FLOOR(" . PracticeRecord::COLUMN_QTY_CORRECTLY_PLAYED_NOTES . "/(" . PracticeRecord::COLUMN_QTY_AVAILABLE_NOTES . " + " . PracticeRecord::COLUMN_QTY_INCORRECTLY_PLAYED_NOTES . ") * 100)) as max_score_percent";
         $practiceRecordSubQuery = PracticeRecord::query()
             ->select([
                 PracticeRecord::COLUMN_SEGMENT_ID,
