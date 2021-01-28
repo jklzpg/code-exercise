@@ -13,16 +13,7 @@ use App\Services\ModelTableInfoService;
 class LessonsProgressRepository
 {
 
-    public static function getLessonProgressForUser(User $user): \Illuminate\Database\Eloquent\Collection|array|\Illuminate\Support\Collection
-    {
-        return self::getLessonProgressForUserId($user->id);
-    }
-
-    /**
-     * @param int $userId
-     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|array
-     */
-    public static function getLessonProgressForUserId(int $userId): \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection|array
+    public static function getLessonProgressForUserId(int $userId)
     {
 
         $lessonTable = ModelTableInfoService::getTableName(Lesson::class);
@@ -82,7 +73,7 @@ class LessonsProgressRepository
             ->havingRaw('MAX(segment_best_pr.segment_score) > 0')
             // order by
             ->orderBy('lessons.id')
-            ->get();
+            ->paginate(10);
 
     }
 }
