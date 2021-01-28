@@ -10,10 +10,11 @@ class LessonProgressCollection extends ResourceCollection
 {
     public $collects = LessonProgressResource::class;
 
+    public static $wrap = null;
+
 
     public function toArray($request)
     {
-        $this->withoutWrapping();
         return [
             'lessons' => $this->collection,
         ];
