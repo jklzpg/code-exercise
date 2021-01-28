@@ -73,7 +73,7 @@ class LessonsProgressRepository
             ->havingRaw('MAX(segment_best_pr.segment_score) > 0')
             // order by
             ->orderBy('lessons.id')
-            ->paginate(10);
+            ->simplePaginate(10);
 
     }
 }
